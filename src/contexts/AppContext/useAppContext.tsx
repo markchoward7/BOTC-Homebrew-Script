@@ -12,11 +12,15 @@ const useAppContext = () => {
   const setScriptRef = (ref: MutableRefObject<undefined>) => {
     dispatch({ type: ActionTypes.SET_SCRIPT_REF, value: ref });
   };
+  const setNightOrderRef = (ref: MutableRefObject<undefined>) => {
+    dispatch({ type: ActionTypes.SET_NIGHT_ORDER_REF, value: ref });
+  };
 
   return {
     appState,
     loadJSON,
     setScriptRef,
+    setNightOrderRef,
   };
 };
 

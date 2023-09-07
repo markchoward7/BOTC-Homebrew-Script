@@ -4,6 +4,7 @@ import { Character, ScriptFileMetaInfo } from "./types";
 export enum ActionTypes {
   LOAD_JSON = "LOAD_JSON",
   SET_SCRIPT_REF = "SET_SCRIPT_REF",
+  SET_NIGHT_ORDER_REF = "SET_NIGHT_ORDER_REF",
 }
 type setFile = {
   type: ActionTypes.LOAD_JSON;
@@ -13,21 +14,27 @@ type setScriptRef = {
   type: ActionTypes.SET_SCRIPT_REF;
   value: MutableRefObject<undefined>;
 };
+type setNightOrderRef = {
+  type: ActionTypes.SET_NIGHT_ORDER_REF;
+  value: MutableRefObject<undefined>;
+};
 
 const buildInitialState = () => {
   const characterList: Character[] = [];
   const scriptRef: MutableRefObject<undefined> = null;
+  const nightOrderRef: MutableRefObject<undefined> = null;
   return {
     scriptName: "",
     authorName: "",
     characterList,
     error: "",
     scriptRef,
+    nightOrderRef,
   };
 };
 
 type State = ReturnType<typeof buildInitialState>;
-type Action = setFile | setScriptRef;
+type Action = setFile | setScriptRef | setNightOrderRef;
 
 const parseFileContents = (
   fileData: string
@@ -56,6 +63,8 @@ const reducer = (state: State, action: Action): State => {
       }
     case ActionTypes.SET_SCRIPT_REF:
       return { ...state, scriptRef: action.value };
+    case ActionTypes.SET_NIGHT_ORDER_REF:
+      return { ...state, nightOrderRef: action.value };
     default:
       return state;
   }
@@ -63,8 +72,7 @@ const reducer = (state: State, action: Action): State => {
 
 const useAppContextReducer = (): [State, React.Dispatch<Action>] => {
   const initialState = buildInitialState();
-  const [state, dispatch] = useReducer(reducer, initialState);
-  return [state, dispatch];
+  return useReducer(reducer, initialState);
 };
 
 export default useAppContextReducer;

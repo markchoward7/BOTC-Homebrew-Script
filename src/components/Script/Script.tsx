@@ -5,6 +5,8 @@ import ScriptEntry from "./ScriptEntry";
 import ScriptDivider from "./ScriptDivider";
 import SaveScriptButton from "./SaveScriptButton";
 import ScriptConfig from "./ScriptConfig";
+import NightOrder from "./NightOrder";
+import SaveNightOrderButton from "./SaveNightOrderButton";
 
 const Script: React.FC = () => {
   const scriptRef = useRef();
@@ -72,6 +74,8 @@ const Script: React.FC = () => {
         </Grid>
       </Paper>
       <SaveScriptButton />
+      <NightOrder />
+      <SaveNightOrderButton />
     </Stack>
   );
 };
