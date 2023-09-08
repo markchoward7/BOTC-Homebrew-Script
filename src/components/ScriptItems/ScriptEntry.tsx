@@ -12,7 +12,7 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
     <Stack direction="row" alignItems="center" spacing={0} height={rowSize}>
       <img src={character.image} height={imageSize} />
       <Typography
-        sx={{ fontSize }}
+        fontSize={fontSize}
         variant="script"
         position="relative"
         width={100}
@@ -20,10 +20,11 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
         {character.name}
       </Typography>
       <Typography
-        sx={{ fontSize }}
+        fontSize={fontSize}
         variant="script"
         position="relative"
         left={abilityTextPosition}
+        sx={{ maxWidth: 700 }}
       >
         {character.ability}
       </Typography>
