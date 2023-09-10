@@ -17,7 +17,7 @@ const ScriptDivider: React.FC<{ team: string; scriptName?: string }> = ({
           sx={{
             position: "absolute",
             left: "6%",
-            backgroundColor: "white",
+            backgroundImage: "url('/page.png')"
           }}
         >
           <Typography variant="scriptName">{scriptName}</Typography>

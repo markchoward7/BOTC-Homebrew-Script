@@ -27,13 +27,16 @@ declare module "@mui/material/Typography" {
 const theme = createTheme({
   palette: {
     mode: "dark",
-    background: { paper: "white" },
+    text: {
+      primary: "rgb(0,0,0)",
+    },
   },
   typography: {
     script: {
       color: "black",
       fontFamily: "applegaramond",
       fontSize: 14,
+      lineHeight: 1.25,
     },
     scriptName: {
       color: "black",
@@ -47,6 +50,13 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: "url('/page.png')",
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
         html: [

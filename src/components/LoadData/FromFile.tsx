@@ -22,7 +22,12 @@ const FromFile: React.FC = () => {
     <Box alignSelf="center">
       <form onSubmit={handleSubmitForm}>
         <Stack direction="row" spacing={1}>
-          <TextField type="file" variant="filled" onChange={handleFileSelect} />
+          <TextField
+            type="file"
+            variant="filled"
+            onChange={handleFileSelect}
+            InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          />
           <Button variant="contained" type="submit">
             Upload
           </Button>

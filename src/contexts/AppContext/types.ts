@@ -17,4 +17,5 @@ export interface ScriptFileMetaInfo {
   name: string;
   author: string;
   almanac: string;
+  logo?: string;
 }

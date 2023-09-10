@@ -18,3 +18,13 @@
 ### Updating
 
 Make sure you redownload or `git pull` to get updates. Afterwards, run `npm ci`
+
+## Attributions
+
+Icons/Images:
+
+dawn.png - <a href="https://www.flaticon.com/free-icons/sunrise" title="sunrise icons">Sunrise icons created by Zaenul Yahya - Flaticon</a>
+demon-info.png - <a href="https://www.flaticon.com/free-icons/letter-d" title="letter d icons">Letter d icons created by Hight Quality Icons - Flaticon</a>
+dusk.png - <a href="https://www.flaticon.com/free-icons/moon-and-stars" title="moon and stars icons">Moon and stars icons created by Tempo_doloe - Flaticon</a>
+laurel.png - <a href="https://www.pngaaa.com/detail/1880452" title="branch of laurel">Branch of laurel image - PngAAA</a>
+minion-info.png - <a href="https://www.flaticon.com/free-icons/letter-m" title="letter m icons">Letter m icons created by Hight Quality Icons - Flaticon</a>

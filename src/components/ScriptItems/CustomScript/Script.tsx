@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Grid, Paper, Stack, Typography } from "@mui/material";
 import { useAppContext } from "contexts/AppContext";
 import ScriptEntry from "./ScriptEntry";
@@ -11,7 +11,9 @@ const Script: React.FC = () => {
     setScriptRef,
   } = useAppContext();
 
-  setScriptRef(scriptRef);
+  useEffect(() => {
+    setScriptRef(scriptRef);
+  }, [scriptRef]);
 
   return (
     <Paper
@@ -19,6 +21,7 @@ const Script: React.FC = () => {
       sx={{
         display: "inline-block",
         width: "900px",
+        height: "1200px",
         margin: "5%",
         position: "relative",
       }}
@@ -50,7 +53,7 @@ const Script: React.FC = () => {
             <ScriptEntry character={char} key={char.id} />
           ))}
       </Stack>
-      <Grid container marginLeft={"1%"}>
+      <Grid container marginLeft={"1%"} position="absolute" bottom={10}>
         <Grid item sm={10}>
           <Typography variant="scriptFooter">
             Homebrew script created by {authorName}.

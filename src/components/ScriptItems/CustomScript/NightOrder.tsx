@@ -1,5 +1,5 @@
 import { Character, useAppContext } from "contexts/AppContext";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Paper, Stack, Typography } from "@mui/material";
 import NightOrderEntry from "./NightOrderEntry";
 
@@ -44,7 +44,9 @@ const NightOrder: React.FC = () => {
     setNightOrderRef,
   } = useAppContext();
 
-  setNightOrderRef(nightOrderRef);
+  useEffect(() => {
+    setNightOrderRef(nightOrderRef);
+  }, [nightOrderRef]);
 
   const firstNightCharacters = characterList
     .concat([dawn, minion, demon])
@@ -61,10 +63,6 @@ const NightOrder: React.FC = () => {
   );
 
   const upsideDownStyling = {
-    "-moz-transform": "scale(-1, -1)",
-    "-webkit-transform": "scale(-1, -1)",
-    "-o-transform": "scale(-1, -1)",
-    "-ms-transform": "scale(-1, -1)",
     transform: "scale(-1, -1)",
   };
 
@@ -73,8 +71,8 @@ const NightOrder: React.FC = () => {
       variant="outlined"
       sx={{
         display: "inline-block",
-        width: "900px",
-        height: "1200px",
+        width: 900,
+        height: 1200,
         margin: "5%",
         position: "relative",
       }}
@@ -95,18 +93,26 @@ const NightOrder: React.FC = () => {
             First Night
           </Typography>
           <div style={{ height: 900 }} />
-          <Typography variant="script" fontSize={20} sx={upsideDownStyling}>
+          <Typography
+            variant="script"
+            fontSize={20}
+            sx={{ transform: "scale(-1, -1)" }}
+          >
             Other Nights
           </Typography>
-          <img src="/night-order-arrow.png" style={upsideDownStyling} />
-          <Typography variant="scriptName" fontSize={36} sx={upsideDownStyling}>
+          <img
+            src="/night-order-arrow.png"
+            style={{ transform: "scale(-1, -1)" }}
+          />
+          <Typography
+            variant="scriptName"
+            fontSize={36}
+            sx={{ transform: "scale(-1, -1)" }}
+          >
             {scriptName}
           </Typography>
         </Stack>
-        <Stack
-          spacing={0}
-          sx={{ position: "absolute", bottom: "5px", right: "5px" }}
-        >
+        <Stack spacing={0} sx={{ position: "absolute", bottom: 5, right: 5 }}>
           {otherNightCharacters.map((char) => (
             <NightOrderEntry
               character={char}

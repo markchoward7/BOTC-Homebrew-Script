@@ -5,7 +5,9 @@ import { useScriptStylingContext } from "contexts/ScriptStylingContext";
 
 const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
   const {
-    scriptStyleState: { imageSize, rowSize, fontSize, abilityTextPosition },
+    scriptStyleState: {
+      CUSTOM: { imageSize, rowSize, fontSize, abilityTextPosition },
+    },
   } = useScriptStylingContext();
 
   return (

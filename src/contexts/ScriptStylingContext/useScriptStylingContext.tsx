@@ -6,6 +6,9 @@ const useScriptStylingContext = () => {
   const context = useContext(ScriptStylingContext);
   const [scriptStyleState, dispatch] = context;
 
+  const setScriptType = (scriptType: "CUSTOM" | "OFFICIAL") => {
+    dispatch({ type: ActionTypes.SET_STYLE_TYPE, value: scriptType });
+  };
   const setImageSize = (size: number) => {
     dispatch({ type: ActionTypes.SET_IMAGE_SIZE, value: size });
   };
@@ -21,6 +24,7 @@ const useScriptStylingContext = () => {
 
   return {
     scriptStyleState,
+    setScriptType,
     setImageSize,
     setRowSize,
     setFontSize,

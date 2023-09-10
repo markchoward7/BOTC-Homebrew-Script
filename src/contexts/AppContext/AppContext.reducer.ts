@@ -26,6 +26,7 @@ const buildInitialState = () => {
   return {
     scriptName: "",
     authorName: "",
+    scriptLogo: "",
     characterList,
     error: "",
     scriptRef,
@@ -56,6 +57,7 @@ const reducer = (state: State, action: Action): State => {
           characterList,
           scriptName: metaData.name,
           authorName: metaData.author,
+          scriptLogo: metaData.logo,
           error: "",
         };
       } catch {
