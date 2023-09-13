@@ -3,6 +3,7 @@
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 import webpack from "webpack";
+import CopyPlugin from "copy-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
@@ -103,6 +104,11 @@ const webpackConfig = (_) => ({
     new webpack.ProvidePlugin({
       React: "react",
     }),
+    new CopyPlugin({
+      patterns: [
+        { from: "public/*.png", to: "" }
+      ]
+    })
   ],
 });
 
