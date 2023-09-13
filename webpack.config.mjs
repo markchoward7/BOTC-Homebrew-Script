@@ -106,7 +106,7 @@ const webpackConfig = (_) => ({
     }),
     new CopyPlugin({
       patterns: [
-        { from: "public/*.png", to: "" }
+        { from: "*.png", to: "", context: "public" }
       ]
     })
   ],
