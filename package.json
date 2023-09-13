@@ -1,7 +1,7 @@
 {
   "name": "botc-script",
   "version": "1.0.0",
-  "description": "Tool for creating PDF BOTC scripts from JSON",
+  "description": "Tool for creating BOTC scripts from JSON",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production --progress",
