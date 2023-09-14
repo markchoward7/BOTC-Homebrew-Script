@@ -1,19 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import {
-  Container,
-  Divider,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Stack } from "@mui/material";
 import { useAppContext } from "contexts/AppContext";
 import ScriptEntry from "./ScriptEntry";
-import TabHeader from "./TabHeader";
+import ScriptTabHeader from "./ScriptTabHeader";
 import ScriptDivider from "./ScriptDivider";
-import SideBar from "./SideBar";
+import ScriptSideBar from "./ScriptSideBar";
 import ScriptFooter from "./ScriptFooter";
 import ScriptHeader from "./ScriptHeader";
+import StyledPaper from "components/StyledPaper";
 
 function splitArray<T>(array: T[]): [T[], T[]] {
   const midIndex = Math.round(array.length / 2);
@@ -52,22 +46,12 @@ const Script: React.FC = () => {
   }
 
   return (
-    <Paper
-      variant="outlined"
-      sx={{
-        display: "inline-block",
-        width: 900,
-        height: 1200,
-        margin: "5%",
-        position: "relative",
-      }}
-      ref={scriptRef}
-    >
-      <SideBar />
+    <StyledPaper ref={scriptRef}>
+      <ScriptSideBar />
       <ScriptHeader title={scriptName} image={scriptLogo} />
       <Stack marginTop={"1%"}>
         <Stack direction="row">
-          <TabHeader title="TOWNSFOLK" />
+          <ScriptTabHeader title="TOWNSFOLK" />
           <Stack direction="row">
             <Stack maxWidth={425}>
               {leftTownsfolk.map((char) => (
@@ -83,7 +67,7 @@ const Script: React.FC = () => {
         </Stack>
         <ScriptDivider />
         <Stack direction="row">
-          <TabHeader title="OUTSIDERS" />
+          <ScriptTabHeader title="OUTSIDERS" />
           <Stack direction="row">
             <Stack maxWidth={425}>
               {leftOutsiders.map((char) => (
@@ -99,7 +83,7 @@ const Script: React.FC = () => {
         </Stack>
         <ScriptDivider />
         <Stack direction="row">
-          <TabHeader title="MINIONS" />
+          <ScriptTabHeader title="MINIONS" />
           <Stack direction="row">
             <Stack maxWidth={425}>
               {leftMinions.map((char) => (
@@ -115,7 +99,7 @@ const Script: React.FC = () => {
         </Stack>
         <ScriptDivider />
         <Stack direction="row">
-          <TabHeader title="DEMONS" />
+          <ScriptTabHeader title="DEMONS" />
           <Stack direction="row">
             <Stack maxWidth={425}>
               {leftDemons.map((char) => (
@@ -131,7 +115,7 @@ const Script: React.FC = () => {
         </Stack>
       </Stack>
       <ScriptFooter author={authorName} />
-    </Paper>
+    </StyledPaper>
   );
 };
 

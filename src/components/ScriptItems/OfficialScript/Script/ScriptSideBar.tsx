@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import React from "react";
 
-const SideBar: React.FC = () => {
+const ScriptSideBar: React.FC = () => {
   return (
     <Container
       disableGutters
@@ -10,10 +10,14 @@ const SideBar: React.FC = () => {
         maxWidth: 30,
         position: "absolute",
         backgroundImage: "url('/side-bar.png')",
-        height: "100%",
+        height: 1200,
+        top: -1,
+        left: -1,
+        borderTopLeftRadius: 3,
+        borderBottomLeftRadius: 3,
       }}
     />
   );
 };
 
-export default SideBar;
+export default ScriptSideBar;

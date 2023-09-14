@@ -34,7 +34,7 @@ const ScriptConfig: React.FC = () => {
   };
 
   return (
-    <Stack width={200} spacing={1} marginTop={"5%"}>
+    <Stack width={200} spacing={1} marginTop="5%">
       <TextField
         label="Image Size"
         type="number"

@@ -1,7 +1,8 @@
 import { Character, useAppContext } from "contexts/AppContext";
 import React, { useEffect, useRef } from "react";
-import { Paper, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import NightOrderEntry from "./NightOrderEntry";
+import StyledPaper from "components/StyledPaper";
 
 const dawn: Character = {
   id: "dawn",
@@ -67,17 +68,7 @@ const NightOrder: React.FC = () => {
   };
 
   return (
-    <Paper
-      variant="outlined"
-      sx={{
-        display: "inline-block",
-        width: 900,
-        height: 1200,
-        margin: "5%",
-        position: "relative",
-      }}
-      ref={nightOrderRef}
-    >
+    <StyledPaper ref={nightOrderRef}>
       <Stack direction="row" spacing={26}>
         <Stack spacing={0}>
           {firstNightCharacters.map((char) => (
@@ -122,7 +113,7 @@ const NightOrder: React.FC = () => {
           ))}
         </Stack>
       </Stack>
-    </Paper>
+    </StyledPaper>
   );
 };
 

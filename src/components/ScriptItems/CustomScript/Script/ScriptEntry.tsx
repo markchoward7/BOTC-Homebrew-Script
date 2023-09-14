@@ -11,7 +11,7 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
   } = useScriptStylingContext();
 
   return (
-    <Stack direction="row" alignItems="center" spacing={0} height={rowSize}>
+    <Stack direction="row" alignItems="center" height={rowSize}>
       <img src={character.image} height={imageSize} />
       <Typography
         fontSize={fontSize}

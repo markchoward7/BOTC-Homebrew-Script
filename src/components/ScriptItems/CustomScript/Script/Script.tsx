@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { Grid, Paper, Stack, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import { useAppContext } from "contexts/AppContext";
 import ScriptEntry from "./ScriptEntry";
 import ScriptDivider from "./ScriptDivider";
+import StyledPaper from "components/StyledPaper";
 
 const Script: React.FC = () => {
   const scriptRef = useRef();
@@ -16,18 +17,8 @@ const Script: React.FC = () => {
   }, [scriptRef]);
 
   return (
-    <Paper
-      variant="outlined"
-      sx={{
-        display: "inline-block",
-        width: "900px",
-        height: "1200px",
-        margin: "5%",
-        position: "relative",
-      }}
-      ref={scriptRef}
-    >
-      <Stack marginTop={"1%"}>
+    <StyledPaper ref={scriptRef}>
+      <Stack marginTop="1%">
         <ScriptDivider team="TOWNSFOLK" scriptName={scriptName} />
         {characterList
           .filter((char) => char.team == "townsfolk")
@@ -53,7 +44,7 @@ const Script: React.FC = () => {
             <ScriptEntry character={char} key={char.id} />
           ))}
       </Stack>
-      <Grid container marginLeft={"1%"} position="absolute" bottom={10}>
+      <Grid container marginLeft="1%" position="absolute" bottom={10}>
         <Grid item sm={10}>
           <Typography variant="scriptFooter">
             Homebrew script created by {authorName}.
@@ -63,7 +54,7 @@ const Script: React.FC = () => {
           <Typography variant="scriptFooter">*Not the first night.</Typography>
         </Grid>
       </Grid>
-    </Paper>
+    </StyledPaper>
   );
 };
 

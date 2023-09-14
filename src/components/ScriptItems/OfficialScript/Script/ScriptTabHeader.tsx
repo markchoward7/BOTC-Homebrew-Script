@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
 
-const TabHeader: React.FC<{ title: string }> = ({ title }) => {
+const ScriptTabHeader: React.FC<{ title: string }> = ({ title }) => {
   return (
     <Typography
       variant="script"
@@ -20,4 +20,4 @@ const TabHeader: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
-export default TabHeader;
+export default ScriptTabHeader;
