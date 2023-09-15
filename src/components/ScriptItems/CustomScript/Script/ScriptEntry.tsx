@@ -10,9 +10,12 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
     },
   } = useScriptStylingContext();
 
+  const image =
+    typeof character.image === "string" ? character.image : character.image[0];
+
   return (
     <Stack direction="row" alignItems="center" height={rowSize}>
-      <img src={character.image} height={imageSize} />
+      <img src={image} height={imageSize} />
       <Typography
         fontSize={fontSize}
         variant="script"

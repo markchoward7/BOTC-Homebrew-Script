@@ -12,8 +12,8 @@ const dawn: Character = {
   team: "townsfolk",
   ability: "",
   image: "dawn.png",
-  firstNight: Infinity,
-  otherNight: Infinity,
+  firstNight: 56,
+  otherNight: 74,
   firstNightReminder: "Wait a few seconds. Call for eyes open.",
   otherNightReminder:
     "Wait a few seconds. Call for eyes open & immediately say who died.",
@@ -24,7 +24,7 @@ const dusk: Character = {
   team: "townsfolk",
   ability: "",
   image: "dusk.png",
-  firstNight: -3,
+  firstNight: -1,
   otherNight: -1,
   firstNightReminder:
     "Check that all eyes are closed. Some Travellers & Fabled act.",
@@ -37,7 +37,8 @@ const minion: Character = {
   team: "minion",
   ability: "",
   image: "minion-info.png",
-  firstNight: -2,
+  firstNight: 5,
+  otherNight: 0,
   firstNightReminder:
     "If there are 7 or more players, wake all Minions: Show the THIS IS THE DEMON token. Point to the Demon.",
 };
@@ -47,7 +48,8 @@ const demon: Character = {
   team: "demon",
   ability: "",
   image: "demon-info.png",
-  firstNight: -1,
+  firstNight: 8,
+  otherNight: 0,
   firstNightReminder:
     "If there are 7 or more players, wake the Demon: Show the THESE ARE YOUR MINIONS token. Point to all Minions. Show the THESE CHARACTERS ARE NOT IN PLAY token. Show 3 not-in-play good character tokens.",
 };
@@ -65,16 +67,22 @@ const NightOrder: React.FC = () => {
 
   const firstNightCharacters = characterList
     .concat([dawn, minion, demon])
-    .filter((char) => char.firstNight);
+    .filter(
+      (char) =>
+        char.firstNight && char.team !== "fabled" && char.team !== "traveler"
+    );
   firstNightCharacters.sort(
     (char1, char2) => char1.firstNight - char2.firstNight
   );
 
   const otherNightCharacters = characterList
     .concat([dawn, dusk])
-    .filter((char) => char.otherNight);
+    .filter(
+      (char) =>
+        char.otherNight && char.team !== "fabled" && char.team !== "traveler"
+    );
   otherNightCharacters.sort(
-    (char1, char2) => char2.otherNight - char1.otherNight
+    (char1, char2) => char1.otherNight - char2.otherNight
   );
 
   return (

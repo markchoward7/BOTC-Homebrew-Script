@@ -42,6 +42,7 @@ const Script: React.FC = () => {
       name: "",
       team: "townsfolk",
       ability: "",
+      image: "",
     });
   }
 

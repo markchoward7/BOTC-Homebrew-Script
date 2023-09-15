@@ -13,9 +13,11 @@ const NightOrderEntry: React.FC<{
     character.team === "townsfolk" || character.team === "outsider"
       ? "rgb(35, 90, 180)"
       : "rgb(150, 30, 30)";
+  const image =
+    typeof character.image === "string" ? character.image : character.image[0];
   return (
     <Stack direction="row" spacing={1}>
-      <img src={character.image} height={50} />
+      <img src={image} height={50} />
       <div
         style={{
           borderRight: "solid",

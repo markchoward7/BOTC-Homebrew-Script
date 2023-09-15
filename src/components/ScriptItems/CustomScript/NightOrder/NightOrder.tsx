@@ -10,8 +10,8 @@ const dawn: Character = {
   team: "townsfolk",
   ability: "",
   image: "dawn.png",
-  firstNight: Infinity,
-  otherNight: Infinity,
+  firstNight: 56,
+  otherNight: 74,
 };
 const dusk: Character = {
   id: "dusk",
@@ -19,6 +19,7 @@ const dusk: Character = {
   team: "townsfolk",
   ability: "",
   image: "dusk.png",
+  firstNight: -1,
   otherNight: -1,
 };
 const minion: Character = {
@@ -27,7 +28,8 @@ const minion: Character = {
   team: "minion",
   ability: "",
   image: "minion-info.png",
-  firstNight: -2,
+  firstNight: 5,
+  otherNight: 0,
 };
 const demon: Character = {
   id: "demon info",
@@ -35,7 +37,8 @@ const demon: Character = {
   team: "demon",
   ability: "",
   image: "demon-info.png",
-  firstNight: -1,
+  firstNight: 8,
+  otherNight: 0,
 };
 
 const NightOrder: React.FC = () => {
@@ -51,14 +54,20 @@ const NightOrder: React.FC = () => {
 
   const firstNightCharacters = characterList
     .concat([dawn, minion, demon])
-    .filter((char) => char.firstNight);
+    .filter(
+      (char) =>
+        char.firstNight && char.team !== "fabled" && char.team !== "traveler"
+    );
   firstNightCharacters.sort(
     (char1, char2) => char1.firstNight - char2.firstNight
   );
 
   const otherNightCharacters = characterList
     .concat([dawn, dusk])
-    .filter((char) => char.otherNight);
+    .filter(
+      (char) =>
+        char.otherNight && char.team !== "fabled" && char.team !== "traveler"
+    );
   otherNightCharacters.sort(
     (char1, char2) => char2.otherNight - char1.otherNight
   );

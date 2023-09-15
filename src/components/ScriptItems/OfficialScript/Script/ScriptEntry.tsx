@@ -17,9 +17,12 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
 
   const abilitySplit = character.ability.split("[");
 
+  const image =
+    typeof character.image === "string" ? character.image : character.image[0];
+
   return (
     <Stack direction="row" alignItems="center" spacing={0} height={rowSize}>
-      <img src={character.image} height={imageSize} />
+      <img src={image} height={imageSize} />
       <Stack position="relative" left={abilityTextPosition}>
         <Typography color={teamColor} fontWeight="bold" variant="script">
           {character.name}
