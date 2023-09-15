@@ -21,6 +21,12 @@ const useScriptStylingContext = () => {
   const setAbilityTextPosition = (position: number) => {
     dispatch({ type: ActionTypes.SET_ABILITY_TEXT_POSITION, value: position });
   };
+  const setScriptXPosition = (position: number) => {
+    dispatch({ type: ActionTypes.SET_SCRIPT_X_POSITION, value: position });
+  };
+  const setScriptYPosition = (position: number) => {
+    dispatch({ type: ActionTypes.SET_SCRIPT_Y_POSITION, value: position });
+  };
 
   return {
     scriptStyleState,
@@ -29,6 +35,8 @@ const useScriptStylingContext = () => {
     setRowSize,
     setFontSize,
     setAbilityTextPosition,
+    setScriptXPosition,
+    setScriptYPosition,
   };
 };
 

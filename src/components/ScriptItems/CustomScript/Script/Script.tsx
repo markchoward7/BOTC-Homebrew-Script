@@ -4,6 +4,7 @@ import { useAppContext } from "contexts/AppContext";
 import ScriptEntry from "./ScriptEntry";
 import ScriptDivider from "./ScriptDivider";
 import StyledPaper from "components/StyledPaper";
+import { useScriptStylingContext } from "contexts/ScriptStylingContext";
 
 const Script: React.FC = () => {
   const scriptRef = useRef();
@@ -12,13 +13,24 @@ const Script: React.FC = () => {
     setScriptRef,
   } = useAppContext();
 
+  const {
+    scriptStyleState: {
+      CUSTOM: { scriptXPosition, scriptYPosition },
+    },
+  } = useScriptStylingContext();
+
   useEffect(() => {
     setScriptRef(scriptRef);
   }, [scriptRef]);
 
   return (
     <StyledPaper ref={scriptRef}>
-      <Stack marginTop="1%">
+      <Stack
+        marginTop="1%"
+        position="relative"
+        left={scriptXPosition}
+        top={scriptYPosition}
+      >
         <ScriptDivider team="TOWNSFOLK" scriptName={scriptName} />
         {characterList
           .filter((char) => char.team == "townsfolk")
@@ -47,7 +59,7 @@ const Script: React.FC = () => {
       <Grid container marginLeft="1%" position="absolute" bottom={10}>
         <Grid item sm={10}>
           <Typography variant="scriptFooter">
-            Homebrew script created by {authorName}.
+            Script created by {authorName}.
           </Typography>
         </Grid>
         <Grid item sm={2}>

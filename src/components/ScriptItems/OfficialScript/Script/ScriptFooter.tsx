@@ -41,7 +41,7 @@ const ScriptFooter: React.FC<{ author: string }> = ({ author }) => {
       <Grid item sm={4} />
       <Grid item sm={3}>
         <Typography variant="scriptFooter">
-          Homebrew script by {author}
+          Script by {author}
         </Typography>
       </Grid>
     </Grid>

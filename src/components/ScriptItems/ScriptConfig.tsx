@@ -9,10 +9,18 @@ const ScriptConfig: React.FC = () => {
     setRowSize,
     setFontSize,
     setAbilityTextPosition,
+    setScriptXPosition,
+    setScriptYPosition,
   } = useScriptStylingContext();
   const { styleType } = scriptStyleState;
-  const { imageSize, rowSize, fontSize, abilityTextPosition } =
-    scriptStyleState[styleType];
+  const {
+    imageSize,
+    rowSize,
+    fontSize,
+    abilityTextPosition,
+    scriptXPosition,
+    scriptYPosition,
+  } = scriptStyleState[styleType];
 
   const handleImageSizeChange: ChangeEventHandler<HTMLInputElement> = (
     event
@@ -31,6 +39,16 @@ const ScriptConfig: React.FC = () => {
     event
   ) => {
     setAbilityTextPosition(Number(event.target.value));
+  };
+  const handleScriptXPositionChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    setScriptXPosition(Number(event.target.value));
+  };
+  const handleScriptYPositionChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    setScriptYPosition(Number(event.target.value));
   };
 
   return (
@@ -61,6 +79,20 @@ const ScriptConfig: React.FC = () => {
         type="number"
         value={abilityTextPosition}
         onChange={handleAbilityPositionChange}
+        InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+      />
+      <TextField
+        label="Script X Axis Position"
+        type="number"
+        value={scriptXPosition}
+        onChange={handleScriptXPositionChange}
+        InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+      />
+      <TextField
+        label="Script Y Axis Position"
+        type="number"
+        value={scriptYPosition}
+        onChange={handleScriptYPositionChange}
         InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
       />
     </Stack>

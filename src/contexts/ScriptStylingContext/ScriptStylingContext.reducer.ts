@@ -6,6 +6,8 @@ export enum ActionTypes {
   SET_ROW_SIZE = "SET_ROW_SIZE",
   SET_FONT_SIZE = "SET_FONT_SIZE",
   SET_ABILITY_TEXT_POSITION = "SET_ABILITY_TEXT_POSITION",
+  SET_SCRIPT_X_POSITION = "SET_SCRIPT_X_POSITION",
+  SET_SCRIPT_Y_POSITION = "SET_SCRIPT_Y_POSITION",
 }
 type setStyleType = {
   type: ActionTypes.SET_STYLE_TYPE;
@@ -23,6 +25,14 @@ type setFontSize = {
   type: ActionTypes.SET_FONT_SIZE;
   value: number;
 };
+type setScriptXPosition = {
+  type: ActionTypes.SET_SCRIPT_X_POSITION;
+  value: number;
+};
+type setScriptYPosition = {
+  type: ActionTypes.SET_SCRIPT_Y_POSITION;
+  value: number;
+};
 type setAbilityTextPosition = {
   type: ActionTypes.SET_ABILITY_TEXT_POSITION;
   value: number;
@@ -37,12 +47,16 @@ const buildInitialState = () => {
       rowSize: 40,
       fontSize: 14,
       abilityTextPosition: -25,
+      scriptXPosition: 0,
+      scriptYPosition: 0,
     },
     OFFICIAL: {
       imageSize: 95,
       rowSize: 75,
       fontSize: 14,
       abilityTextPosition: 0,
+      scriptXPosition: 0,
+      scriptYPosition: 0,
     },
   };
 };
@@ -53,7 +67,9 @@ type Action =
   | setImageSize
   | setRowSize
   | setFontSize
-  | setAbilityTextPosition;
+  | setAbilityTextPosition
+  | setScriptXPosition
+  | setScriptYPosition;
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -86,6 +102,22 @@ const reducer = (state: State, action: Action): State => {
         [state.styleType]: {
           ...state[state.styleType],
           abilityTextPosition: action.value,
+        },
+      };
+    case ActionTypes.SET_SCRIPT_X_POSITION:
+      return {
+        ...state,
+        [state.styleType]: {
+          ...state[state.styleType],
+          scriptXPosition: action.value,
+        },
+      };
+    case ActionTypes.SET_SCRIPT_Y_POSITION:
+      return {
+        ...state,
+        [state.styleType]: {
+          ...state[state.styleType],
+          scriptYPosition: action.value,
         },
       };
     default:
