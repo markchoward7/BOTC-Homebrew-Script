@@ -72,7 +72,6 @@ const validateCharacterList = (
       if (officialCharacter === undefined) {
         throw Error(`Invalid character ${char}`);
       }
-      officialCharacter.image = `https://github.com/bra1n/townsquare/blob/develop/src/assets/icons/${officialCharacter.id}.png?raw=true`;
       characterList.push(officialCharacter);
     } else if (char.name === undefined) {
       const officialCharacter = state.officialCharacters.find(
@@ -81,7 +80,6 @@ const validateCharacterList = (
       if (officialCharacter === undefined) {
         throw Error(`Invalid character ${char.id}`);
       }
-      officialCharacter.image = `https://github.com/bra1n/townsquare/blob/develop/src/assets/icons/${officialCharacter.id}.png?raw=true`;
       characterList.push(officialCharacter);
     } else {
       characterList.push(char);

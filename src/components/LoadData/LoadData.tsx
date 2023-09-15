@@ -11,9 +11,7 @@ const LoadData: React.FC = () => {
   const { setOfficialCharacters } = useAppContext();
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/bra1n/townsquare/main/src/roles.json"
-    )
+    fetch("/roles.json")
       .then((response) => response.json())
       .then((data) => {
         setOfficialCharacters(data);

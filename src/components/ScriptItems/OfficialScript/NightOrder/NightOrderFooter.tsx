@@ -10,7 +10,7 @@ const NightOrderFooter: React.FC<{ title: string; image?: string }> = ({
       style={{
         position: "absolute",
         left: 650,
-        bottom: 0,
+        bottom: -40,
         width: 200,
         height: 200,
       }}

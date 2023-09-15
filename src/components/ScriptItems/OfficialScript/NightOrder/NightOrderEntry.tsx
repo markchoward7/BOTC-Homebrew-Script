@@ -8,7 +8,6 @@ const NightOrderEntry: React.FC<{
 }> = ({ character, night }) => {
   const reminder =
     night === "FIRST" ? "firstNightReminder" : "otherNightReminder";
-  const lines = character[reminder].split(".").filter((line) => line !== "");
   const teamColor =
     character.team === "townsfolk" || character.team === "outsider"
       ? "rgb(35, 90, 180)"
@@ -37,18 +36,14 @@ const NightOrderEntry: React.FC<{
           {character.name}
         </Typography>
       </div>
-      <Stack justifyContent="center">
-        {lines.map((line, index) => (
-          <Typography
-            variant="script"
-            key={line}
-            left={index === 0 ? 0 : 20}
-            position="relative"
-          >
-            {line}.
-          </Typography>
-        ))}
-      </Stack>
+      <Typography
+        variant="script"
+        position="relative"
+        alignSelf="center"
+        width={600}
+      >
+        {character[reminder]}
+      </Typography>
     </Stack>
   );
 };
