@@ -72,6 +72,7 @@ const validateCharacterList = (
       if (officialCharacter === undefined) {
         throw Error(`Invalid character ${char}`);
       }
+      officialCharacter.official = true;
       characterList.push(officialCharacter);
     } else if (char.name === undefined) {
       const officialCharacter = state.officialCharacters.find(
@@ -80,8 +81,10 @@ const validateCharacterList = (
       if (officialCharacter === undefined) {
         throw Error(`Invalid character ${char.id}`);
       }
+      officialCharacter.official = true;
       characterList.push(officialCharacter);
     } else {
+      char.official = false;
       characterList.push(char);
     }
   });

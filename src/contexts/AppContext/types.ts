@@ -34,6 +34,7 @@ export interface Character {
       | "otherDay";
     global: "townsfolk" | "outsider" | "minion" | "demon" | "traveler";
   }[];
+  official: boolean;
 }
 
 export interface ScriptFileMetaInfo {

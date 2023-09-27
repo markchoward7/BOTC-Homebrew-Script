@@ -6,7 +6,7 @@ import { useScriptStylingContext } from "contexts/ScriptStylingContext";
 const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
   const {
     scriptStyleState: {
-      CUSTOM: { imageSize, rowSize, fontSize, abilityTextPosition },
+      CUSTOM: { HOMEBREW, OFFICIAL, rowSize, fontSize },
     },
   } = useScriptStylingContext();
 
@@ -15,12 +15,26 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
 
   return (
     <Stack direction="row" alignItems="center" height={rowSize}>
-      <img src={image} height={imageSize} />
+      <img
+        src={image}
+        height={character.official ? OFFICIAL.imageSize : HOMEBREW.imageSize}
+        style={{
+          position: "relative",
+          left: character.official
+            ? OFFICIAL.imagePosition
+            : HOMEBREW.imagePosition,
+        }}
+      />
       <Typography
         fontSize={fontSize}
         variant="script"
         position="relative"
         width={100}
+        left={
+          character.official
+            ? OFFICIAL.nameTextPosition
+            : HOMEBREW.nameTextPosition
+        }
       >
         {character.name}
       </Typography>
@@ -28,7 +42,11 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
         fontSize={fontSize}
         variant="script"
         position="relative"
-        left={abilityTextPosition}
+        left={
+          character.official
+            ? OFFICIAL.abilityTextPosition
+            : HOMEBREW.abilityTextPosition
+        }
         sx={{ maxWidth: 700 }}
       >
         {character.ability}

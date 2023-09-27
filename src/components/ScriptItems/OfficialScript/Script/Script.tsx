@@ -50,6 +50,7 @@ const Script: React.FC = () => {
       team: "townsfolk",
       ability: "",
       image: "",
+      official: false,
     });
   }
 
