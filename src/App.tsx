@@ -3,7 +3,6 @@ import ThemeWrapper from "styling";
 import { AppContextProvider } from "contexts/AppContext";
 import ScriptItems from "components/ScriptItems";
 import LoadData from "components/LoadData";
-import { ScriptStylingContextProvider } from "contexts/ScriptStylingContext";
 import { Stack } from "@mui/material";
 
 const App: React.FC = () => {
@@ -18,10 +17,8 @@ const App: React.FC = () => {
     >
       <ThemeWrapper>
         <AppContextProvider>
-          <ScriptStylingContextProvider>
             <LoadData />
             <ScriptItems />
-          </ScriptStylingContextProvider>
         </AppContextProvider>
       </ThemeWrapper>
     </Stack>

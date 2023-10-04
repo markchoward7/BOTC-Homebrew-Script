@@ -1,14 +1,12 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
 import { Character } from "contexts/AppContext";
-import { useScriptStylingContext } from "contexts/ScriptStylingContext";
+import { useStylingContext } from "contexts/StylingContext";
 
 const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
   const {
-    scriptStyleState: {
-      OFFICIAL: { HOMEBREW, OFFICIAL, rowSize, fontSize },
-    },
-  } = useScriptStylingContext();
+    styleState: { HOMEBREW, OFFICIAL, rowSize, fontSize },
+  } = useStylingContext();
 
   const teamColor =
     character.team === "townsfolk" || character.team === "outsider"

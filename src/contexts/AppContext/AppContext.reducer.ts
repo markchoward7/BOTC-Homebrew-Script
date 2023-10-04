@@ -3,8 +3,8 @@ import { Character, ScriptFileMetaInfo } from "./types";
 
 export enum ActionTypes {
   LOAD_JSON = "LOAD_JSON",
-  SET_SCRIPT_REF = "SET_SCRIPT_REF",
-  SET_NIGHT_ORDER_REF = "SET_NIGHT_ORDER_REF",
+  SET_SCRIPT_REFS = "SET_SCRIPT_REFS",
+  SET_NIGHT_ORDER_REFS = "SET_NIGHT_ORDER_REFS",
   SET_OFFICIAL_CHARACTERS = "SET_OFFICIAL_CHARACTERS",
   SET_OFFICIAL_NIGHT_ORDER = "SET_OFFICIAL_NIGHT_ORDER",
 }
@@ -13,12 +13,12 @@ type setFile = {
   value: string;
 };
 type setScriptRef = {
-  type: ActionTypes.SET_SCRIPT_REF;
-  value: MutableRefObject<undefined>;
+  type: ActionTypes.SET_SCRIPT_REFS;
+  value: MutableRefObject<undefined>[];
 };
 type setNightOrderRef = {
-  type: ActionTypes.SET_NIGHT_ORDER_REF;
-  value: MutableRefObject<undefined>;
+  type: ActionTypes.SET_NIGHT_ORDER_REFS;
+  value: MutableRefObject<undefined>[];
 };
 type setOfficialCharacters = {
   type: ActionTypes.SET_OFFICIAL_CHARACTERS;
@@ -27,8 +27,10 @@ type setOfficialCharacters = {
 
 const buildInitialState = () => {
   const characterList: Character[] = [];
-  const scriptRef: MutableRefObject<undefined> = null;
-  const nightOrderRef: MutableRefObject<undefined> = null;
+  const scriptFrontRef: MutableRefObject<undefined> = null;
+  const scriptBackRef: MutableRefObject<undefined> = null;
+  const nightOrderFrontRef: MutableRefObject<undefined> = null;
+  const nightOrderBackRef: MutableRefObject<undefined> = null;
   const officialCharacters: Character[] = [];
   return {
     scriptName: "",
@@ -36,8 +38,10 @@ const buildInitialState = () => {
     scriptLogo: "",
     characterList,
     error: "",
-    scriptRef,
-    nightOrderRef,
+    scriptFrontRef,
+    scriptBackRef,
+    nightOrderFrontRef,
+    nightOrderBackRef,
     officialCharacters,
   };
 };
@@ -107,10 +111,18 @@ const reducer = (state: State, action: Action): State => {
       } catch {
         return { ...state, error: "Error parsing JSON file" };
       }
-    case ActionTypes.SET_SCRIPT_REF:
-      return { ...state, scriptRef: action.value };
-    case ActionTypes.SET_NIGHT_ORDER_REF:
-      return { ...state, nightOrderRef: action.value };
+    case ActionTypes.SET_SCRIPT_REFS:
+      return {
+        ...state,
+        scriptFrontRef: action.value[0],
+        scriptBackRef: action.value[1],
+      };
+    case ActionTypes.SET_NIGHT_ORDER_REFS:
+      return {
+        ...state,
+        nightOrderFrontRef: action.value[0],
+        nightOrderBackRef: action.value[1],
+      };
     case ActionTypes.SET_OFFICIAL_CHARACTERS:
       return { ...state, officialCharacters: action.value };
     default:

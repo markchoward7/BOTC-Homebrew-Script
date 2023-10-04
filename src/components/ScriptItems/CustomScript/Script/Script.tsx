@@ -4,23 +4,21 @@ import { useAppContext } from "contexts/AppContext";
 import ScriptEntry from "./ScriptEntry";
 import ScriptDivider from "./ScriptDivider";
 import StyledPaper from "components/StyledPaper";
-import { useScriptStylingContext } from "contexts/ScriptStylingContext";
+import { useStylingContext } from "contexts/StylingContext";
 
 const Script: React.FC = () => {
   const scriptRef = useRef();
   const {
     appState: { scriptName, authorName, characterList },
-    setScriptRef,
+    setScriptRefs,
   } = useAppContext();
 
   const {
-    scriptStyleState: {
-      CUSTOM: { scriptXPosition, scriptYPosition },
-    },
-  } = useScriptStylingContext();
+    styleState: { pageXPosition, pageYPosition },
+  } = useStylingContext();
 
   useEffect(() => {
-    setScriptRef(scriptRef);
+    setScriptRefs([scriptRef, null]);
   }, [scriptRef]);
 
   return (
@@ -28,8 +26,8 @@ const Script: React.FC = () => {
       <Stack
         marginTop="1%"
         position="relative"
-        left={scriptXPosition}
-        top={scriptYPosition}
+        left={pageXPosition}
+        top={pageYPosition}
       >
         <ScriptDivider team="TOWNSFOLK" scriptName={scriptName} />
         {characterList

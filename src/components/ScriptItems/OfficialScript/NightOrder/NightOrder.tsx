@@ -5,6 +5,7 @@ import NightOrderEntry from "./NightOrderEntry";
 import NightOrderFooter from "./NightOrderFooter";
 import NightOrderSideBar from "./NightOrderSideBar";
 import StyledPaper from "components/StyledPaper";
+import { useStylingContext } from "contexts/StylingContext";
 
 const dawn: Character = {
   id: "dawn",
@@ -59,18 +60,23 @@ const demon: Character = {
 };
 
 const NightOrder: React.FC = () => {
-  const nightOrderRef = useRef();
+  const nightOrderFrontRef = useRef();
+  const nightOrderBackRef = useRef();
   const {
     appState: { characterList, scriptName, scriptLogo },
-    setNightOrderRef,
+    setNightOrderRefs,
   } = useAppContext();
 
+  const {
+    styleState: { pageXPosition, pageYPosition },
+  } = useStylingContext();
+
   useEffect(() => {
-    setNightOrderRef(nightOrderRef);
-  }, [nightOrderRef]);
+    setNightOrderRefs([nightOrderFrontRef, nightOrderBackRef]);
+  }, [nightOrderFrontRef, nightOrderBackRef]);
 
   const firstNightCharacters = characterList
-    .concat([dawn, minion, demon])
+    .concat([dawn, dusk, minion, demon])
     .filter(
       (char) =>
         char.firstNight && char.team !== "fabled" && char.team !== "traveler"
@@ -90,19 +96,29 @@ const NightOrder: React.FC = () => {
   );
 
   return (
-    <Stack ref={nightOrderRef} spacing={1} margin="5%">
-      <StyledPaper>
+    <Stack spacing={1} margin="5%">
+      <StyledPaper ref={nightOrderFrontRef}>
         <NightOrderSideBar night="FIRST" />
-        <Stack spacing={1}>
+        <Stack
+          spacing={1}
+          position="relative"
+          top={pageYPosition}
+          left={pageXPosition}
+        >
           {firstNightCharacters.map((char) => (
             <NightOrderEntry character={char} key={char.id} night="FIRST" />
           ))}
         </Stack>
         <NightOrderFooter title={scriptName} image={scriptLogo} />
       </StyledPaper>
-      <StyledPaper>
+      <StyledPaper ref={nightOrderBackRef}>
         <NightOrderSideBar night="OTHER" />
-        <Stack spacing={1}>
+        <Stack
+          spacing={1}
+          position="relative"
+          top={pageYPosition}
+          left={pageXPosition}
+        >
           {otherNightCharacters.map((char) => (
             <NightOrderEntry character={char} key={char.id} night="OTHER" />
           ))}

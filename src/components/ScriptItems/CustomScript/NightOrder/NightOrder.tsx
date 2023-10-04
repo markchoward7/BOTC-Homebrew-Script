@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { Stack, Typography } from "@mui/material";
 import NightOrderEntry from "./NightOrderEntry";
 import StyledPaper from "components/StyledPaper";
+import { useStylingContext } from "contexts/StylingContext";
 
 const dawn: Character = {
   id: "dawn",
@@ -49,15 +50,19 @@ const NightOrder: React.FC = () => {
   const nightOrderRef = useRef();
   const {
     appState: { characterList, scriptName },
-    setNightOrderRef,
+    setNightOrderRefs,
   } = useAppContext();
 
+  const {
+    styleState: { pageXPosition, pageYPosition },
+  } = useStylingContext();
+
   useEffect(() => {
-    setNightOrderRef(nightOrderRef);
+    setNightOrderRefs([nightOrderRef, null]);
   }, [nightOrderRef]);
 
   const firstNightCharacters = characterList
-    .concat([dawn, minion, demon])
+    .concat([dawn, dusk, minion, demon])
     .filter(
       (char) =>
         char.firstNight && char.team !== "fabled" && char.team !== "traveler"
@@ -76,13 +81,15 @@ const NightOrder: React.FC = () => {
     (char1, char2) => char2.otherNight - char1.otherNight
   );
 
-  const upsideDownStyling = {
-    transform: "scale(-1, -1)",
-  };
-
   return (
     <StyledPaper ref={nightOrderRef}>
-      <Stack direction="row" spacing={26}>
+      <Stack
+        direction="row"
+        spacing={26}
+        position="relative"
+        left={pageXPosition}
+        top={pageYPosition}
+      >
         <Stack spacing={0}>
           {firstNightCharacters.map((char) => (
             <NightOrderEntry character={char} key={char.id} />
@@ -118,11 +125,7 @@ const NightOrder: React.FC = () => {
         </Stack>
         <Stack spacing={0} sx={{ position: "absolute", bottom: 5, right: 5 }}>
           {otherNightCharacters.map((char) => (
-            <NightOrderEntry
-              character={char}
-              styleOptions={upsideDownStyling}
-              key={char.id}
-            />
+            <NightOrderEntry character={char} key={char.id} upsideDown />
           ))}
         </Stack>
       </Stack>

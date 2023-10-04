@@ -1,3 +1,3 @@
-import SaveImageButton from "./SaveScriptButton";
+import SaveImageButton from "./SaveImageButton";
 
 export default SaveImageButton;

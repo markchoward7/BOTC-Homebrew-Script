@@ -1,28 +1,32 @@
-import { Grid, Stack, TextField } from "@mui/material";
-import { useScriptStylingContext } from "contexts/ScriptStylingContext";
+import { Grid, TextField } from "@mui/material";
+import { useStylingContext } from "contexts/StylingContext";
 import React, { ChangeEventHandler } from "react";
 
-const ScriptConfig: React.FC = () => {
+const StyleConfig: React.FC<{
+  style: "OFFICIAL" | "CUSTOM";
+  item: "SCRIPT" | "NIGHT_ORDER";
+}> = ({ style, item }) => {
   const {
-    scriptStyleState,
+    styleState,
     setImageSize,
     setImagePosition,
     setRowSize,
     setFontSize,
     setAbilityTextPosition,
     setNameTextPosition,
-    setScriptXPosition,
-    setScriptYPosition,
-  } = useScriptStylingContext();
-  const { styleType } = scriptStyleState;
+    setPageXPosition,
+    setPageYPosition,
+  } = useStylingContext();
   const {
     HOMEBREW,
     OFFICIAL,
     rowSize,
     fontSize,
-    scriptXPosition,
-    scriptYPosition,
-  } = scriptStyleState[styleType];
+    pageXPosition,
+    pageYPosition,
+  } = styleState;
+
+  const itemLabelText = item === "SCRIPT" ? "Script" : "Night Order";
 
   const handleHomebrewImageSizeChange: ChangeEventHandler<HTMLInputElement> = (
     event
@@ -44,14 +48,6 @@ const ScriptConfig: React.FC = () => {
   > = (event) => {
     setImagePosition(Number(event.target.value), "OFFICIAL");
   };
-  const handleRowSizeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setRowSize(Number(event.target.value));
-  };
-  const handleFontSizeChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    setFontSize(Number(event.target.value));
-  };
   const handleHomebrewAbilityPositionChange: ChangeEventHandler<
     HTMLInputElement
   > = (event) => {
@@ -72,16 +68,8 @@ const ScriptConfig: React.FC = () => {
   > = (event) => {
     setNameTextPosition(Number(event.target.value), "OFFICIAL");
   };
-  const handleScriptXPositionChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    setScriptXPosition(Number(event.target.value));
-  };
-  const handleScriptYPositionChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    setScriptYPosition(Number(event.target.value));
-  };
+
+  const inputProps = { sx: { color: "rgba(255, 255, 255, 0.7)" } };
 
   return (
     <Grid container width={400} spacing={1} marginTop="5%">
@@ -91,7 +79,7 @@ const ScriptConfig: React.FC = () => {
           type="number"
           value={HOMEBREW.imageSize}
           onChange={handleHomebrewImageSizeChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          InputProps={inputProps}
         />
       </Grid>
       <Grid item xs={6}>
@@ -100,7 +88,7 @@ const ScriptConfig: React.FC = () => {
           type="number"
           value={HOMEBREW.imagePosition}
           onChange={handleHomebrewImagePositionChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          InputProps={inputProps}
         />
       </Grid>
       <Grid item xs={6}>
@@ -109,7 +97,7 @@ const ScriptConfig: React.FC = () => {
           type="number"
           value={OFFICIAL.imageSize}
           onChange={handleOfficialImageSizeChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          InputProps={inputProps}
         />
       </Grid>
       <Grid item xs={6}>
@@ -118,28 +106,32 @@ const ScriptConfig: React.FC = () => {
           type="number"
           value={OFFICIAL.imagePosition}
           onChange={handleOfficialImagePositionChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          InputProps={inputProps}
         />
       </Grid>
-      <Grid item xs={6}>
-        <TextField
-          label="Homebrew Ability Text Position"
-          type="number"
-          value={HOMEBREW.abilityTextPosition}
-          onChange={handleHomebrewAbilityPositionChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <TextField
-          label="Official Ability Text Position"
-          type="number"
-          value={OFFICIAL.abilityTextPosition}
-          onChange={handleOfficialAbilityPositionChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
-        />
-      </Grid>
-      {styleType === "CUSTOM" ? (
+      {style === "OFFICIAL" || item === "SCRIPT" ? (
+        <>
+          <Grid item xs={6}>
+            <TextField
+              label="Homebrew Ability Text Position"
+              type="number"
+              value={HOMEBREW.abilityTextPosition}
+              onChange={handleHomebrewAbilityPositionChange}
+              InputProps={inputProps}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              label="Official Ability Text Position"
+              type="number"
+              value={OFFICIAL.abilityTextPosition}
+              onChange={handleOfficialAbilityPositionChange}
+              InputProps={inputProps}
+            />
+          </Grid>
+        </>
+      ) : null}
+      {style === "CUSTOM" || item == "NIGHT_ORDER" ? (
         <>
           <Grid item xs={6}>
             <TextField
@@ -147,7 +139,7 @@ const ScriptConfig: React.FC = () => {
               type="number"
               value={HOMEBREW.nameTextPosition}
               onChange={handleHomebrewNamePositionChange}
-              InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+              InputProps={inputProps}
             />
           </Grid>
           <Grid item xs={6}>
@@ -156,7 +148,7 @@ const ScriptConfig: React.FC = () => {
               type="number"
               value={OFFICIAL.nameTextPosition}
               onChange={handleOfficialNamePositionChange}
-              InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+              InputProps={inputProps}
             />
           </Grid>
         </>
@@ -166,8 +158,8 @@ const ScriptConfig: React.FC = () => {
           label="Row Size"
           type="number"
           value={rowSize}
-          onChange={handleRowSizeChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          onChange={(event) => setRowSize(Number(event.target.value))}
+          InputProps={inputProps}
         />
       </Grid>
       <Grid item xs={6}>
@@ -175,30 +167,30 @@ const ScriptConfig: React.FC = () => {
           label="Font Size"
           type="number"
           value={fontSize}
-          onChange={handleFontSizeChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          onChange={(event) => setFontSize(Number(event.target.value))}
+          InputProps={inputProps}
         />
       </Grid>
       <Grid item xs={6}>
         <TextField
-          label="Script X Axis Position"
+          label={`${itemLabelText} X Axis Position`}
           type="number"
-          value={scriptXPosition}
-          onChange={handleScriptXPositionChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          value={pageXPosition}
+          onChange={(event) => setPageXPosition(Number(event.target.value))}
+          InputProps={inputProps}
         />
       </Grid>
       <Grid item xs={6}>
         <TextField
-          label="Script Y Axis Position"
+          label={`${itemLabelText} Y Axis Position`}
           type="number"
-          value={scriptYPosition}
-          onChange={handleScriptYPositionChange}
-          InputProps={{ sx: { color: "rgba(255, 255, 255, 0.7)" } }}
+          value={pageYPosition}
+          onChange={(event) => setPageYPosition(Number(event.target.value))}
+          InputProps={inputProps}
         />
       </Grid>
     </Grid>
   );
 };
 
-export default ScriptConfig;
+export default StyleConfig;

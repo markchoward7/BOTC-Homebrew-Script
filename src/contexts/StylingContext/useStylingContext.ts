@@ -1,14 +1,11 @@
 import { useContext } from "react";
-import { ActionTypes } from "./ScriptStylingContext.reducer";
-import { ScriptStylingContext } from "./ScriptStylingContextProvider";
+import { ActionTypes } from "./StylingContext.reducer";
+import { StylingContext } from "./StylingContextProvider";
 
-const useScriptStylingContext = () => {
-  const context = useContext(ScriptStylingContext);
-  const [scriptStyleState, dispatch] = context;
+const useStylingContext = () => {
+  const context = useContext(StylingContext);
+  const [styleState, dispatch] = context;
 
-  const setScriptType = (scriptType: "CUSTOM" | "OFFICIAL") => {
-    dispatch({ type: ActionTypes.SET_STYLE_TYPE, value: scriptType });
-  };
   const setImageSize = (size: number, version: "HOMEBREW" | "OFFICIAL") => {
     dispatch({ type: ActionTypes.SET_IMAGE_SIZE, version, value: size });
   };
@@ -41,25 +38,24 @@ const useScriptStylingContext = () => {
       value: position,
     });
   };
-  const setScriptXPosition = (position: number) => {
-    dispatch({ type: ActionTypes.SET_SCRIPT_X_POSITION, value: position });
+  const setPageXPosition = (position: number) => {
+    dispatch({ type: ActionTypes.SET_PAGE_X_POSITION, value: position });
   };
-  const setScriptYPosition = (position: number) => {
-    dispatch({ type: ActionTypes.SET_SCRIPT_Y_POSITION, value: position });
+  const setPageYPosition = (position: number) => {
+    dispatch({ type: ActionTypes.SET_PAGE_Y_POSITION, value: position });
   };
 
   return {
-    scriptStyleState,
-    setScriptType,
+    styleState,
     setImageSize,
     setImagePosition,
     setRowSize,
     setFontSize,
     setAbilityTextPosition,
     setNameTextPosition,
-    setScriptXPosition,
-    setScriptYPosition,
+    setPageXPosition,
+    setPageYPosition,
   };
 };
 
-export default useScriptStylingContext;
+export default useStylingContext;
