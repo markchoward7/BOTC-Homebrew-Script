@@ -13,7 +13,7 @@ const dawn: Character = {
   official: false,
   image: "dawn.png",
   firstNight: 56,
-  otherNight: 74,
+  otherNight: 75,
 };
 const dusk: Character = {
   id: "dusk",

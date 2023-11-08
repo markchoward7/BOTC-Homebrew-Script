@@ -15,7 +15,7 @@ const dawn: Character = {
   official: false,
   image: "dawn.png",
   firstNight: 56,
-  otherNight: 74,
+  otherNight: 75,
   firstNightReminder: "Wait a few seconds. Call for eyes open.",
   otherNightReminder:
     "Wait a few seconds. Call for eyes open & immediately say who died.",
