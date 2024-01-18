@@ -162,7 +162,7 @@ const officialScriptPreset: State = {
   },
   OFFICIAL: {
     imageSize: 50,
-    imagePosition: 10,
+    imagePosition: 15,
     abilityTextPosition: 20,
     nameTextPosition: 0,
   },
@@ -197,14 +197,14 @@ const officialNightOrderPreset: State = {
     nameTextPosition: 0,
   },
   OFFICIAL: {
-    imageSize: 35,
-    imagePosition: 5,
+    imageSize: 50,
+    imagePosition: 0,
     abilityTextPosition: 0,
     nameTextPosition: 0,
   },
   rowSize: 50,
   fontSize: 14,
-  pageXPosition: 0,
+  pageXPosition: 5,
   pageYPosition: 0,
 };
 

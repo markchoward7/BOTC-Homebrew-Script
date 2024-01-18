@@ -60,12 +60,12 @@ const Script: React.FC = () => {
         <Stack direction="row">
           <ScriptTabHeader title="TOWNSFOLK" />
           <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+            <Stack width={425} paddingRight={2}>
               {leftTownsfolk.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
-            <Stack maxWidth={425}>
+            <Stack width={425}>
               {rightTownsfolk.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
@@ -76,12 +76,12 @@ const Script: React.FC = () => {
         <Stack direction="row">
           <ScriptTabHeader title="OUTSIDERS" />
           <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+            <Stack width={425} paddingRight={2}>
               {leftOutsiders.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
-            <Stack maxWidth={425}>
+            <Stack width={425}>
               {rightOutsiders.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
@@ -92,7 +92,7 @@ const Script: React.FC = () => {
         <Stack direction="row">
           <ScriptTabHeader title="MINIONS" />
           <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+            <Stack width={425} paddingRight={2}>
               {leftMinions.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
@@ -108,7 +108,7 @@ const Script: React.FC = () => {
         <Stack direction="row">
           <ScriptTabHeader title="DEMONS" />
           <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+            <Stack width={425} paddingRight={2}>
               {leftDemons.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
