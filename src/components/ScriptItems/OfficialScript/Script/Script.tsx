@@ -59,13 +59,18 @@ const Script: React.FC = () => {
       <Stack position="relative" top={pageYPosition}>
         <Stack direction="row">
           <ScriptTabHeader title="TOWNSFOLK" />
-          <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+          <Stack
+            direction="row"
+            position="relative"
+            left={pageXPosition}
+            width={"100%"}
+          >
+            <Stack maxWidth={425} width={"50%"}>
               {leftTownsfolk.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
-            <Stack maxWidth={425}>
+            <Stack maxWidth={425} width={"50%"}>
               {rightTownsfolk.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
@@ -75,13 +80,18 @@ const Script: React.FC = () => {
         <ScriptDivider />
         <Stack direction="row">
           <ScriptTabHeader title="OUTSIDERS" />
-          <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+          <Stack
+            direction="row"
+            position="relative"
+            left={pageXPosition}
+            width={"100%"}
+          >
+            <Stack maxWidth={425} width={"50%"}>
               {leftOutsiders.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
-            <Stack maxWidth={425}>
+            <Stack maxWidth={425} width={"50%"}>
               {rightOutsiders.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
@@ -91,13 +101,18 @@ const Script: React.FC = () => {
         <ScriptDivider />
         <Stack direction="row">
           <ScriptTabHeader title="MINIONS" />
-          <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+          <Stack
+            direction="row"
+            position="relative"
+            left={pageXPosition}
+            width={"100%"}
+          >
+            <Stack maxWidth={425} width={"50%"}>
               {leftMinions.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
-            <Stack maxWidth={425}>
+            <Stack maxWidth={425} width={"50%"}>
               {rightMinions.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
@@ -107,13 +122,18 @@ const Script: React.FC = () => {
         <ScriptDivider />
         <Stack direction="row">
           <ScriptTabHeader title="DEMONS" />
-          <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack maxWidth={425}>
+          <Stack
+            direction="row"
+            position="relative"
+            left={pageXPosition}
+            width={"100%"}
+          >
+            <Stack maxWidth={425} width={"50%"}>
               {leftDemons.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
-            <Stack maxWidth={425}>
+            <Stack maxWidth={425} width={"50%"}>
               {rightDemons.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}

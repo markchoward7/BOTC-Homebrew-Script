@@ -143,7 +143,7 @@ const customScriptPreset: State = {
     nameTextPosition: 0,
   },
   OFFICIAL: {
-    imageSize: 35,
+    imageSize: 50,
     imagePosition: 5,
     abilityTextPosition: -15,
     nameTextPosition: 8,
@@ -197,7 +197,7 @@ const officialNightOrderPreset: State = {
     nameTextPosition: 0,
   },
   OFFICIAL: {
-    imageSize: 35,
+    imageSize: 50,
     imagePosition: 5,
     abilityTextPosition: 0,
     nameTextPosition: 0,
