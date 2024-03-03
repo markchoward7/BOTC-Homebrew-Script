@@ -14,8 +14,8 @@ const dawn: Character = {
   ability: "",
   official: false,
   image: "dawn.png",
-  firstNight: 60,
-  otherNight: 78,
+  firstNight: 61,
+  otherNight: 79,
   firstNightReminder: "Wait a few seconds. Call for eyes open.",
   otherNightReminder:
     "Wait a few seconds. Call for eyes open & immediately say who died.",
@@ -41,7 +41,7 @@ const minion: Character = {
   ability: "",
   official: false,
   image: "minion-info.png",
-  firstNight: 7,
+  firstNight: 8,
   otherNight: 0,
   firstNightReminder:
     "If there are 7 or more players, wake all Minions: Show the THIS IS THE DEMON token. Point to the Demon.",
@@ -53,7 +53,7 @@ const demon: Character = {
   ability: "",
   official: false,
   image: "demon-info.png",
-  firstNight: 10,
+  firstNight: 11,
   otherNight: 0,
   firstNightReminder:
     "If there are 7 or more players, wake the Demon: Show the THESE ARE YOUR MINIONS token. Point to all Minions. Show the THESE CHARACTERS ARE NOT IN PLAY token. Show 3 not-in-play good character tokens.",
