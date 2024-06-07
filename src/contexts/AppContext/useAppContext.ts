@@ -17,7 +17,7 @@ const useAppContext = () => {
     dispatch({ type: ActionTypes.SET_NIGHT_ORDER_REFS, value: refs });
   };
   const setOfficialCharacters = (characters: Character[]) => {
-    dispatch({ type: ActionTypes.SET_OFFICIAL_CHARACTERS, value: characters });
+    dispatch({ type: ActionTypes.SET_OFFICIAL_CHARACTERS, value: characters.map(c => ({ ...c, image: `/images/${c.id}.webp` })) });
   };
 
   return {

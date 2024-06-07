@@ -5,7 +5,7 @@ import FromLink from "./FromLink";
 import { useAppContext } from "contexts/AppContext";
 
 const LoadData: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<number>(0);
+  const [currentTab, setCurrentTab] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
 
   const { setOfficialCharacters } = useAppContext();

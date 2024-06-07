@@ -1,22 +1,33 @@
 import { Container, Typography } from "@mui/material";
+import { useStylingContext } from "contexts/StylingContext";
+import { getSidebarBackground } from "contexts/StylingContext/colors";
 import React from "react";
 
 const NightOrderSideBar: React.FC<{ night: "FIRST" | "OTHER" }> = ({
   night,
 }) => {
+  const {
+    styleState: { characterTypeHeaderWidth, colorTheme, pageHeight },
+  } = useStylingContext();
+
+
   return (
     <Container
       disableGutters
       maxWidth={false}
       sx={{
-        maxWidth: 30,
+        maxWidth: characterTypeHeaderWidth,
         position: "absolute",
-        backgroundImage: "url('/side-bar.png')",
-        height: 1200,
+        backgroundImage: getSidebarBackground(colorTheme),
+        backgroundSize: "cover",
+        height: pageHeight,
         top: -1,
         right: -1,
         borderTopRightRadius: 3,
         borderBottomRightRadius: 3,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
       }}
     >
       <Typography

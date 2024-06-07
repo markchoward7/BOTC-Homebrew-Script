@@ -1,10 +1,20 @@
-import { Divider } from "@mui/material";
+import { Box, Divider, Stack } from "@mui/material";
+import { useStylingContext } from "contexts/StylingContext";
 import React from "react";
 
 const ScriptDivider: React.FC = () => {
+  const {
+    styleState: {
+      pageWidth, 
+    },
+  } = useStylingContext();
+
   return (
     <Divider
-      sx={{ borderColor: "black", marginBottom: "1%", position: "relative" }}
+      sx={{ 
+        borderColor: "rgba(135, 91, 46, 0.25)", 
+        marginY: "10px",
+        position: "relative" }}
     />
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Stack, TextField, Box } from "@mui/material";
 import { useAppContext } from "contexts/AppContext";
 
@@ -17,6 +17,17 @@ const FromFile: React.FC = () => {
     event.preventDefault();
     file.text().then((data) => loadJSON(data));
   };
+
+  useEffect(() => {
+    const run = async () => {
+      await new Promise(res => {
+        setTimeout(res, 100)
+      })
+      loadJSON('[{"id":"_meta","author":"Ben B","name":"Trouble with Violets"}, {"id": "washerwoman"}, {"id": "librarian"}, {"id": "investigator"}, {"id": "chef"}, {"id": "empath"}, {"id": "fortune_teller"}, {"id": "undertaker"}, {"id": "monk"}, {"id": "ravenkeeper"}, {"id": "virgin"}, {"id": "slayer"}, {"id": "soldier"}, {"id": "mayor"}, {"id": "butler"}, {"id": "drunk"}, {"id": "recluse"}, {"id": "saint"}, {"id": "evil_twin"}, {"id": "witch"}, {"id": "cerenovus"}, {"id": "pit-hag"}, {"id": "fang_gu"}, {"id": "vigormortis"}, {"id": "no_dashii"}, {"id": "vortox"}]')
+    }
+    
+    run()
+  }, [])
 
   return (
     <Box alignSelf="center">

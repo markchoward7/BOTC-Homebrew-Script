@@ -17,6 +17,8 @@ function splitArray<T>(array: T[]): [T[], T[]] {
   return [leftArray, rightArray];
 }
 
+
+
 const Script: React.FC = () => {
   const scriptRef = useRef();
   const {
@@ -25,7 +27,14 @@ const Script: React.FC = () => {
   } = useAppContext();
 
   const {
-    styleState: { pageXPosition, pageYPosition },
+    styleState: { 
+      pageXPosition, 
+      pageYPosition, 
+      pageRightPosition, 
+      pageWidth, 
+      characterTypeHeaderWidth ,
+      columnGap
+    },
   } = useStylingContext();
 
   useEffect(() => {
@@ -42,7 +51,7 @@ const Script: React.FC = () => {
   const [leftDemons, rightDemons] = splitArray(demons);
 
   if (leftTownsfolk.length !== rightTownsfolk.length) {
-    rightTownsfolk.unshift({
+    rightTownsfolk.push({
       id: "blank",
       name: "",
       team: "townsfolk",
@@ -52,20 +61,26 @@ const Script: React.FC = () => {
     });
   }
 
+  const characterContainerWidth = pageWidth - pageXPosition - pageRightPosition - characterTypeHeaderWidth
+  const entryWidth = (characterContainerWidth - columnGap) / 2
+
   return (
     <StyledPaper ref={scriptRef}>
       <ScriptSideBar />
+
       <ScriptHeader title={scriptName} image={scriptLogo} />
+
       <Stack position="relative" top={pageYPosition}>
-        <Stack direction="row">
+        <Stack direction="row" spacing={0}>
           <ScriptTabHeader title="TOWNSFOLK" />
-          <Stack direction="row" position="relative" left={pageXPosition}>
-            <Stack width={425} paddingRight={2}>
+
+          <Stack direction="row" position="relative" left={pageXPosition} spacing={`${columnGap}px`}>
+            <Stack width={entryWidth}>
               {leftTownsfolk.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
-            <Stack width={425}>
+            <Stack width={entryWidth}>
               {rightTownsfolk.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
               ))}
@@ -73,6 +88,7 @@ const Script: React.FC = () => {
           </Stack>
         </Stack>
         <ScriptDivider />
+
         <Stack direction="row">
           <ScriptTabHeader title="OUTSIDERS" />
           <Stack direction="row" position="relative" left={pageXPosition}>
@@ -81,6 +97,7 @@ const Script: React.FC = () => {
                 <ScriptEntry character={char} key={char.id} />
               ))}
             </Stack>
+
             <Stack width={425}>
               {rightOutsiders.map((char) => (
                 <ScriptEntry character={char} key={char.id} />
@@ -89,6 +106,7 @@ const Script: React.FC = () => {
           </Stack>
         </Stack>
         <ScriptDivider />
+        
         <Stack direction="row">
           <ScriptTabHeader title="MINIONS" />
           <Stack direction="row" position="relative" left={pageXPosition}>

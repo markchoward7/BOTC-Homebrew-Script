@@ -1,5 +1,6 @@
-import { Grid, TextField } from "@mui/material";
+import { Grid, MenuItem, Select, TextField } from "@mui/material";
 import { useStylingContext } from "contexts/StylingContext";
+import { COLORS, ColorTheme } from "contexts/StylingContext/colors";
 import React, { ChangeEventHandler } from "react";
 
 const StyleConfig: React.FC<{
@@ -16,6 +17,12 @@ const StyleConfig: React.FC<{
     setNameTextPosition,
     setPageXPosition,
     setPageYPosition,
+    setPageRightPosition,
+    setCharacterTypeHeaderWidth,
+    setPageWidth,
+    setPageHeight,
+    setColumnGap,
+    setColorTheme
   } = useStylingContext();
   const {
     HOMEBREW,
@@ -24,6 +31,12 @@ const StyleConfig: React.FC<{
     fontSize,
     pageXPosition,
     pageYPosition,
+    pageRightPosition,
+    characterTypeHeaderWidth,
+    pageWidth,
+    pageHeight,
+    columnGap,
+    colorTheme
   } = styleState;
 
   const itemLabelText = item === "SCRIPT" ? "Script" : "Night Order";
@@ -182,6 +195,15 @@ const StyleConfig: React.FC<{
       </Grid>
       <Grid item xs={6}>
         <TextField
+          label={`${itemLabelText} Right Position`}
+          type="number"
+          value={pageRightPosition}
+          onChange={(event) => setPageRightPosition(Number(event.target.value))}
+          InputProps={inputProps}
+        />
+      </Grid>
+      <Grid item xs={6}>
+        <TextField
           label={`${itemLabelText} Y Axis Position`}
           type="number"
           value={pageYPosition}
@@ -189,6 +211,66 @@ const StyleConfig: React.FC<{
           InputProps={inputProps}
         />
       </Grid>
+      <Grid item xs={6}>
+        <TextField
+          label={`Page width`}
+          type="number"
+          value={pageWidth}
+          onChange={(event) => setPageWidth(Number(event.target.value))}
+          InputProps={inputProps}
+        />
+      </Grid>
+      <Grid item xs={6}>
+        <TextField
+          label={`Page height`}
+          type="number"
+          value={pageHeight}
+          onChange={(event) => setPageHeight(Number(event.target.value))}
+          InputProps={inputProps}
+        />
+      </Grid>
+      {style && 'OFFICIAL' && 
+        <Grid item xs={6}>
+        <TextField
+          label={`Character type header width`}
+          type="number"
+          value={characterTypeHeaderWidth}
+          onChange={(event) => setCharacterTypeHeaderWidth(Number(event.target.value))}
+          InputProps={inputProps}
+        />
+      </Grid>
+      }
+      {style === "OFFICIAL" && item === "SCRIPT" && 
+      <Grid item xs={6}>
+        <TextField
+          label={`Column gap`}
+          type="number"
+          value={columnGap}
+          onChange={(event) => setColumnGap(Number(event.target.value))}
+          InputProps={inputProps}
+        />
+      </Grid>
+      }
+      {
+        style === "OFFICIAL" && 
+        <Grid item xs={6}>
+          <select
+            style={{width: '100%', 
+            height: "48px", 
+            backgroundColor: 'transparent', 
+            borderRadius: 4,
+            color: 'white'
+          }}
+            value={colorTheme}
+            onChange={(event) => {
+              console.log("CHANGE", event.target.value)
+              setColorTheme(event.target.value as ColorTheme)}
+            }
+          >
+            {COLORS.map(color => <option value={color} key={color}>{color}</option>)}
+          </select>
+        </Grid>
+      }
     </Grid>
   );
 };

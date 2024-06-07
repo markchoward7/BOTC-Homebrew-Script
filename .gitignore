@@ -1,2 +1,5 @@
 node_modules/
 build/
+public/images/
+
+.DS_Store

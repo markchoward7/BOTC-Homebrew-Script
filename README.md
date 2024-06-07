@@ -6,6 +6,7 @@
 2. Download or `git clone` this repository
 3. Open a terminal within the folder
 4. `npm i`
+5. Add your own role icons to the public/images folder
 
 ### Running after setup
 

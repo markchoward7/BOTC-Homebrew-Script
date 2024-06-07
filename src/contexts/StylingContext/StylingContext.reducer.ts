@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import { ColorTheme } from "./colors";
 
 export enum ActionTypes {
   SET_IMAGE_SIZE = "SET_IMAGE_SIZE",
@@ -9,7 +10,14 @@ export enum ActionTypes {
   SET_NAME_TEXT_POSITION = "SET_NAME_TEXT_POSITION",
   SET_PAGE_X_POSITION = "SET_PAGE_X_POSITION",
   SET_PAGE_Y_POSITION = "SET_PAGE_Y_POSITION",
+  SET_PAGE_RIGHT_POSITION = "SET_PAGE_RIGHT_POSITION",
+  SET_PAGE_WIDTH = 'SET_PAGE_WIDTH',
+  SET_PAGE_HEIGHT = 'SET_PAGE_HEIGHT',
+  SET_CHARACTER_TYPE_HEADER_WIDTH = "SET_CHARACTER_TYPE_HEADER_WIDTH",
+  SET_COLUMN_GAP = "SET_COLUMN_GAP",
+  SET_COLOR_THEME = 'SET_COLOR_THEME',
 }
+
 type setImageSize = {
   type: ActionTypes.SET_IMAGE_SIZE;
   version: "HOMEBREW" | "OFFICIAL";
@@ -46,6 +54,30 @@ type setPageYPosition = {
   type: ActionTypes.SET_PAGE_Y_POSITION;
   value: number;
 };
+type setPageRightPosition = {
+  type: ActionTypes.SET_PAGE_RIGHT_POSITION;
+  value: number;
+};
+type setPageWidth = {
+  type: ActionTypes.SET_PAGE_WIDTH;
+  value: number;
+};
+type setPageHeight = {
+  type: ActionTypes.SET_PAGE_HEIGHT;
+  value: number;
+};
+type setCharacterTypeHeaderWidth = {
+  type: ActionTypes.SET_CHARACTER_TYPE_HEADER_WIDTH;
+  value: number;
+};
+type setColumnGap = {
+  type: ActionTypes.SET_COLUMN_GAP;
+  value: number;
+}
+type setColorTheme = {
+  type: ActionTypes.SET_COLOR_THEME;
+  value: ColorTheme;
+}
 
 type State = {
   HOMEBREW: {
@@ -64,6 +96,12 @@ type State = {
   fontSize: number;
   pageXPosition: number;
   pageYPosition: number;
+  pageRightPosition: number;
+  pageWidth: number;
+  pageHeight: number;
+  characterTypeHeaderWidth: number;
+  columnGap: number;
+  colorTheme: ColorTheme
 };
 
 type Action =
@@ -74,7 +112,13 @@ type Action =
   | setAbilityTextPosition
   | setNameTextPosition
   | setPageXPosition
-  | setPageYPosition;
+  | setPageYPosition
+  | setPageRightPosition
+  | setPageWidth
+  | setPageHeight
+  | setCharacterTypeHeaderWidth
+  | setColumnGap
+  | setColorTheme;
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -130,6 +174,36 @@ const reducer = (state: State, action: Action): State => {
         ...state,
         pageYPosition: action.value,
       };
+    case ActionTypes.SET_PAGE_RIGHT_POSITION:
+      return {
+        ...state,
+        pageRightPosition: action.value,
+      };
+    case ActionTypes.SET_PAGE_WIDTH:
+      return {
+        ...state,
+        pageWidth: action.value,
+      };
+    case ActionTypes.SET_PAGE_HEIGHT:
+      return {
+        ...state,
+        pageHeight: action.value,
+      };
+    case ActionTypes.SET_CHARACTER_TYPE_HEADER_WIDTH:
+      return {
+        ...state,
+        characterTypeHeaderWidth: action.value,
+      };
+    case ActionTypes.SET_COLUMN_GAP:
+      return {
+        ...state,
+        columnGap: action.value,
+      };
+    case ActionTypes.SET_COLOR_THEME:
+      return {
+        ...state,
+        colorTheme: action.value,
+      };
     default:
       return state;
   }
@@ -152,6 +226,12 @@ const customScriptPreset: State = {
   fontSize: 14,
   pageXPosition: 0,
   pageYPosition: 0,
+  pageRightPosition: 0,
+  pageWidth: 900,
+  pageHeight: 1272,
+  characterTypeHeaderWidth: 30,
+  columnGap: 0,
+  colorTheme: 'red',
 };
 const officialScriptPreset: State = {
   HOMEBREW: {
@@ -163,13 +243,19 @@ const officialScriptPreset: State = {
   OFFICIAL: {
     imageSize: 50,
     imagePosition: 15,
-    abilityTextPosition: 20,
+    abilityTextPosition: 15,
     nameTextPosition: 0,
   },
-  rowSize: 75,
+  rowSize: 82,
   fontSize: 14,
   pageXPosition: 0,
   pageYPosition: 0,
+  pageRightPosition: 20,
+  pageWidth: 900,
+  pageHeight: 1272,
+  characterTypeHeaderWidth: 40,
+  columnGap: 15,
+  colorTheme: 'red',
 };
 const customNightOrderPreset: State = {
   HOMEBREW: {
@@ -188,6 +274,12 @@ const customNightOrderPreset: State = {
   fontSize: 14,
   pageXPosition: 0,
   pageYPosition: 0,
+  pageRightPosition: 0,
+  pageWidth: 900,
+  pageHeight: 1272,
+  characterTypeHeaderWidth: 30,
+  columnGap: 0,
+  colorTheme: 'red',
 };
 const officialNightOrderPreset: State = {
   HOMEBREW: {
@@ -204,8 +296,14 @@ const officialNightOrderPreset: State = {
   },
   rowSize: 50,
   fontSize: 14,
-  pageXPosition: 5,
-  pageYPosition: 0,
+  pageXPosition: 15,
+  pageYPosition: 15,
+  pageRightPosition: 0,
+  pageWidth: 900,
+  pageHeight: 1272,
+  characterTypeHeaderWidth: 40,
+  columnGap: 0,
+  colorTheme: 'red',
 };
 
 const useStylingContextReducer = (
@@ -216,6 +314,7 @@ const useStylingContextReducer = (
   const customScriptReducer = reducer;
   const officialNightOrderReducer = reducer;
   const customNightOrderReducer = reducer;
+
   if (style === "CUSTOM" && item === "SCRIPT") {
     return useReducer(customScriptReducer, customScriptPreset);
   } else if (style === "OFFICIAL" && item === "SCRIPT") {

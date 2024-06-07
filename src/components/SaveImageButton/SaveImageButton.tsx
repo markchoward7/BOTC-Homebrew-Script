@@ -28,7 +28,7 @@ const SaveImageButton: React.FC<{ item: "SCRIPT" | "NIGHT_ORDER" }> = ({
       if (element === null) {
         return;
       }
-      const data = await domToPng(element.current);
+      const data = await domToPng(element.current, {scale: item === "SCRIPT" ? 4 : 3, quality: 0.8});
       setLoading(false);
       const link = document.createElement("a");
       link.href = data;

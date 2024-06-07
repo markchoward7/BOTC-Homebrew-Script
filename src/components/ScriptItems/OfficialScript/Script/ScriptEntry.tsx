@@ -5,7 +5,7 @@ import { useStylingContext } from "contexts/StylingContext";
 
 const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
   const {
-    styleState: { HOMEBREW, OFFICIAL, rowSize, fontSize },
+    styleState: { HOMEBREW, OFFICIAL, rowSize, fontSize, characterTypeHeaderWidth, pageXPosition, pageRightPosition, pageWidth, columnGap },
   } = useStylingContext();
 
   const teamColor =
@@ -18,40 +18,43 @@ const ScriptEntry: React.FC<{ character: Character }> = ({ character }) => {
   const image =
     typeof character.image === "string" ? character.image : character.image[0];
 
+  const characterContainerWidth = pageWidth - pageXPosition - pageRightPosition - characterTypeHeaderWidth
+
+  const entryWidth = (characterContainerWidth - columnGap) / 2
+
+  const imagePosition = character.official
+  ? OFFICIAL.imagePosition
+  : HOMEBREW.imagePosition
+
+  const imageSize = character.official ? OFFICIAL.imageSize : HOMEBREW.imageSize
+
+  const abilityTextPosition = imagePosition + (character.official
+  ? OFFICIAL.abilityTextPosition
+  : HOMEBREW.abilityTextPosition)
+
   return (
     <Stack direction="row" alignItems="center" spacing={0} height={rowSize}>
       <img
         src={image}
-        height={character.official ? OFFICIAL.imageSize : HOMEBREW.imageSize}
+        height={imageSize}
         style={{
           position: "relative",
-          left: character.official
-            ? OFFICIAL.imagePosition
-            : HOMEBREW.imagePosition,
+          left: imagePosition,
         }}
       />
       <Stack
         position="relative"
         left={
-          character.official
-            ? OFFICIAL.abilityTextPosition
-            : HOMEBREW.abilityTextPosition
+          abilityTextPosition
         }
       >
-        <Typography color={teamColor} fontWeight="bold" variant="script">
+        <Typography color={teamColor} fontWeight="bold" variant="scriptSubtitle">
           {character.name}
         </Typography>
         <Stack>
-          <Typography variant="script" fontSize={fontSize}>
-            {abilitySplit[0]}
+          <Typography variant="script" fontSize={fontSize} width={entryWidth - abilityTextPosition - imageSize}>
+            {abilitySplit[0]} {abilitySplit.length > 1 ? <b>[{abilitySplit[1]}</b> : ""}
           </Typography>
-          {abilitySplit.length > 1 ? (
-            <Typography fontWeight="bold" variant="script">
-              [{abilitySplit[1]}
-            </Typography>
-          ) : (
-            <></>
-          )}
         </Stack>
       </Stack>
     </Stack>

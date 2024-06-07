@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ActionTypes } from "./StylingContext.reducer";
 import { StylingContext } from "./StylingContextProvider";
+import { ColorTheme } from "./colors";
 
 const useStylingContext = () => {
   const context = useContext(StylingContext);
@@ -44,6 +45,24 @@ const useStylingContext = () => {
   const setPageYPosition = (position: number) => {
     dispatch({ type: ActionTypes.SET_PAGE_Y_POSITION, value: position });
   };
+  const setPageRightPosition = (position: number) => {
+    dispatch({ type: ActionTypes.SET_PAGE_RIGHT_POSITION, value: position });
+  };
+  const setPageWidth = (position: number) => {
+    dispatch({ type: ActionTypes.SET_PAGE_WIDTH, value: position });
+  };
+  const setPageHeight = (position: number) => {
+    dispatch({ type: ActionTypes.SET_PAGE_HEIGHT, value: position });
+  };
+  const setCharacterTypeHeaderWidth = (w: number) => {
+    dispatch({ type: ActionTypes.SET_CHARACTER_TYPE_HEADER_WIDTH, value: w });
+  }
+  const setColumnGap = (gap: number) => {
+    dispatch({ type: ActionTypes.SET_COLUMN_GAP, value: gap });
+  }
+  const setColorTheme = (colorTheme: ColorTheme) => {
+    dispatch({ type: ActionTypes.SET_COLOR_THEME, value: colorTheme });
+  }
 
   return {
     styleState,
@@ -55,6 +74,12 @@ const useStylingContext = () => {
     setNameTextPosition,
     setPageXPosition,
     setPageYPosition,
+    setPageRightPosition,
+    setPageWidth,
+    setPageHeight,
+    setCharacterTypeHeaderWidth,
+    setColumnGap,
+    setColorTheme,
   };
 };
 

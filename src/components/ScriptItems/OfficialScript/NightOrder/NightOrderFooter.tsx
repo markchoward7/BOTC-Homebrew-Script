@@ -1,21 +1,28 @@
 import { Stack, Typography } from "@mui/material";
+import { useStylingContext } from "contexts/StylingContext";
+import { getTitleColor } from "contexts/StylingContext/colors";
 import React from "react";
 
 const NightOrderFooter: React.FC<{ title: string; image?: string }> = ({
   title,
   image,
 }) => {
+
+  const {
+    styleState: { colorTheme },
+  } = useStylingContext();
+
   return (
     <div
       style={{
         position: "absolute",
-        left: 650,
-        bottom: -40,
-        width: 200,
+        left: 450,
+        bottom: 15,
+        width: 400,
         height: 200,
       }}
     >
-      <Stack>
+      <Stack height="200px" justifyContent="flex-end">
         {image ? (
           <img
             src={image}
@@ -35,7 +42,7 @@ const NightOrderFooter: React.FC<{ title: string; image?: string }> = ({
           lineHeight={1}
           sx={{
             background:
-              "-webkit-radial-gradient(rgb(200, 50, 50), rgb(100, 75, 75))",
+              getTitleColor(colorTheme),
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
