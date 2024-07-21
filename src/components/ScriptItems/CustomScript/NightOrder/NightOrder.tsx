@@ -12,8 +12,8 @@ const dawn: Character = {
   ability: "",
   official: false,
   image: "dawn.png",
-  firstNight: 61,
-  otherNight: 79,
+  firstNight: 63,
+  otherNight: 81,
 };
 const dusk: Character = {
   id: "dusk",
@@ -42,7 +42,7 @@ const demon: Character = {
   official: false,
   ability: "",
   image: "demon-info.png",
-  firstNight: 11,
+  firstNight: 12,
   otherNight: 0,
 };
 
