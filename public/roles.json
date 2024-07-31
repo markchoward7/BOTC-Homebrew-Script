@@ -2136,7 +2136,7 @@
     "id": "alsaahir",
     "name": "Alsaahir",
     "team": "townsfolk",
-    "image": "",
+    "image": "https://script.bloodontheclocktower.com/images/icon/4%20-%20Experimental/townsfolk/Alsaahir_icon.webp",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 0,
@@ -2149,6 +2149,7 @@
     "id": "ogre",
     "name": "Ogre",
     "team": "outsider",
+    "image": "https://script.bloodontheclocktower.com/images/icon/4%20-%20Experimental/outsider/Ogre_icon.webp",
     "firstNight": 58,
     "firstNightReminder": "The Ogre points to a player (not themselves) and becomes their alignment.",
     "otherNight": 0,
@@ -2161,6 +2162,7 @@
     "id": "banshee",
     "name": "Banshee",
     "team": "townsfolk",
+    "image": "https://script.bloodontheclocktower.com/images/icon/4%20-%20Experimental/townsfolk/Banshee_icon.webp",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 49,
@@ -2168,5 +2170,18 @@
     "reminders": ["Has Ability"],
     "setup": false,
     "ability": "If the Demon kills you, all players learn this. From now on, you may nominate twice per day and vote twice per nomination."
+  },
+  {
+    "id": "zealot",
+    "name": "Zealot",
+    "team": "outsider",
+    "image": "https://script.bloodontheclocktower.com/images/icon/4%20-%20Experimental/outsider/Zealot_icon.webp",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "If there are 5 or more players alive, you must vote for every nomination."
   }
 ]
