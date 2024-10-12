@@ -2209,5 +2209,18 @@
     "reminders": [],
     "setup": false,
     "ability": "The Demon (even if drunk or poisoned) has a not-in-play good character's ability. You both know which."
+  },
+  {
+    "id": "summoner",
+    "name": "Summoner",
+    "team": "minion",
+    "image": "https://script.bloodontheclocktower.com/images/icon/4%20-%20Experimental/minion/Summoner_icon.webp",
+    "firstNight": 17,
+    "firstNightReminder": "Show the 'These charactesr are not in play' card. Show 3 character tokens of good characters not in play.",
+    "otherNight": 26,
+    "otherNightReminder": "On the 3rd night, have them point to a player and a Demon on the character sheet - that player becomes that Demon.",
+    "reminders": ["Night 1", "Night 2", "Night 3"],
+    "setup": true,
+    "ability": "You get 3 bluffs. On the 3rd night, choose a player: they become an evil Demon of your choice. [No Demon]"
   }
 ]

@@ -8,6 +8,7 @@ JSON_STRUCT = {
     "id": "",
     "name": "",
     "team": "",
+    "image": "",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 0,
