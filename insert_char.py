@@ -19,26 +19,27 @@ JSON_STRUCT = {
 
 
 def main():
-    new_char = input("Enter new character name: ").strip()
-    JSON_STRUCT.update({"name": new_char})
-    resp = requests.get(NIGHTSHEET_URL)
+    name = input("Enter new character name: ").strip()
+    char_id = name.replace(" ", "").replace("-", "").lower()
+    JSON_STRUCT.update({"name": name, "id": char_id})
+    resp = requests.get(NIGHTSHEET_URL, timeout=10)
     resp_json = resp.json()
     first_order, other_order = resp_json["firstNight"], resp_json["otherNight"]
-    with open(JSON_FILEPATH, "r") as json_file:
+    with open(JSON_FILEPATH, "r", encoding="utf-8") as json_file:
         role_json = json.load(json_file)
     role_json.append(JSON_STRUCT)
 
     for role in role_json:
-        if role["name"] in first_order:
-            role["firstNight"] = first_order.index(role["name"]) + 1
+        if role["id"] in first_order:
+            role["firstNight"] = first_order.index(role["id"]) + 1
         else:
             role["firstNight"] = 0
-        if role["name"] in other_order:
-            role["otherNight"] = other_order.index(role["name"]) + 1
+        if role["id"] in other_order:
+            role["otherNight"] = other_order.index(role["id"]) + 1
         else:
             role["otherNight"] = 0
 
-    with open(JSON_FILEPATH, "w") as json_file:
+    with open(JSON_FILEPATH, "w", encoding="utf-8") as json_file:
         json.dump(role_json, json_file)
 
     print(f"First Night Dusk: {first_order.index('DUSK') + 1}")
