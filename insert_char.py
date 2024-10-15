@@ -1,3 +1,5 @@
+"""Insert new characters into the roles.json."""
+
 import json
 
 import requests
@@ -20,9 +22,14 @@ JSON_STRUCT = {
 
 
 def main():
+    """Main function."""
     name = input("Enter new character name: ").strip()
     char_id = name.replace(" ", "").replace("-", "").lower()
-    JSON_STRUCT.update({"name": name, "id": char_id})
+    JSON_STRUCT["name"] = name
+    JSON_STRUCT["id"] = char_id
+    JSON_STRUCT["image"] = (
+        f"https://raw.githubusercontent.com/tomozbot/botc-icons/refs/heads/main/WEBP/{char_id}.webp"
+    )
     resp = requests.get(NIGHTSHEET_URL, timeout=10)
     resp_json = resp.json()
     first_order, other_order = resp_json["firstNight"], resp_json["otherNight"]
