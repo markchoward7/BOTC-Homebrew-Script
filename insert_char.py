@@ -5,6 +5,7 @@ import json
 import requests
 
 NIGHTSHEET_URL = "https://script.bloodontheclocktower.com/data/nightsheet.json"
+JINXES_URL = "https://script.bloodontheclocktower.com/data/jinx.json"
 JSON_FILEPATH = "./public/roles.json"
 JSON_STRUCT = {
     "id": "",
@@ -18,6 +19,7 @@ JSON_STRUCT = {
     "reminders": [],
     "setup": False,
     "ability": "",
+    "jinxes": [],
 }
 
 
@@ -33,6 +35,11 @@ def main():
     resp = requests.get(NIGHTSHEET_URL, timeout=10)
     resp_json = resp.json()
     first_order, other_order = resp_json["firstNight"], resp_json["otherNight"]
+    resp = requests.get(JINXES_URL, timeout=10)
+    resp_json = resp.json()
+    for entry in resp_json:
+        if entry["id"] == char_id:
+            JSON_STRUCT["jinxes"] = entry["jinx"]
     with open(JSON_FILEPATH, "r", encoding="utf-8") as json_file:
         role_json = json.load(json_file)
     role_json.append(JSON_STRUCT)

@@ -1,6 +1,6 @@
 import { Character, useAppContext } from "contexts/AppContext";
 import React, { useEffect, useRef } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import NightOrderEntry from "./NightOrderEntry";
 import StyledPaper from "components/StyledPaper";
 import { useStylingContext } from "contexts/StylingContext";
@@ -81,11 +81,31 @@ const NightOrder: React.FC = () => {
     (char1, char2) => char2.otherNight - char1.otherNight
   );
 
+  const jinxes = characterList
+    .flatMap((character) => {
+      return character.jinxes
+        ?.filter((jinx) => characterList.find((char) => char.id === jinx.id))
+        ?.map((jinx) => {
+          const char2 = characterList.find((char) => char.id === jinx.id);
+          return {
+            reason: jinx.reason,
+            image1:
+              typeof character.image === "string"
+                ? character.image
+                : character.image[0],
+            image2:
+              typeof char2.image === "string" ? char2.image : char2.image[0],
+          };
+        });
+    })
+    .filter((item) => item);
+  console.log(jinxes);
+
   return (
     <StyledPaper ref={nightOrderRef}>
       <Stack
         direction="row"
-        spacing={26}
+        spacing={8}
         position="relative"
         left={pageXPosition}
         top={pageYPosition}
@@ -103,7 +123,29 @@ const NightOrder: React.FC = () => {
           <Typography variant="script" fontSize={20}>
             First Night
           </Typography>
-          <div style={{ height: 900 }} />
+          <Box height={880} width={500} marginTop={5}>
+            <Typography
+              variant="script"
+              fontSize={18}
+              align="center"
+              display="block"
+            >
+              Jinxes
+            </Typography>
+            <Stack marginTop={2}>
+              {jinxes.map((jinx) => {
+                return (
+                  <Stack direction="row" key={jinx.reason}>
+                    <img src={jinx.image1} height={50} />
+                    <img src={jinx.image2} height={50} />
+                    <Typography variant="script" fontSize={16}>
+                      {jinx.reason}
+                    </Typography>
+                  </Stack>
+                );
+              })}
+            </Stack>
+          </Box>
           <Typography
             variant="script"
             fontSize={20}
